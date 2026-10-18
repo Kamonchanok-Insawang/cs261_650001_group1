@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TU REVIEW - Search Courses</title>
   
-  <!-- Fonts & Icons -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -28,8 +28,17 @@
         <span class="user-name">User Account</span>
       </div>
     </header>
-  </div>
 
+    <div class="search-section">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="course code">
+      </div>
+      <button type="button" id="openFilterBtn" class="filter-btn" aria-label="Open filter">
+        <i class="fa-solid fa-sliders"></i>
+      </button>
+    </div>
+  </div>
   <script src="search.js"></script>
 </body>
 </html>

@@ -9,9 +9,11 @@ body {
   background-color: #f1f5f9;
   color: #262e5b;
   min-height: 100vh;
+  width: 100%;
   padding: 24px;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .app-container {
@@ -20,9 +22,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: stretch;
 }
 
 .main-header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,4 +78,63 @@ body {
   font-size: 14px;
   font-weight: 700;
   color: #262e5b;
+}
+
+.search-section {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.search-input-wrapper {
+  flex: 1; 
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  color: #aeaeae;
+  font-size: 18px;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  height: 52px;
+  padding: 0 20px 0 52px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 26px;
+  font-size: 15px;
+  color: #262e5b;
+  outline: none;
+}
+
+.search-input-wrapper input::placeholder {
+  color: #aeaeae;
+}
+
+.filter-btn {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0; 
+  background-color: #262e5b;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: #1a2042;
+  transform: scale(1.05);
 }
