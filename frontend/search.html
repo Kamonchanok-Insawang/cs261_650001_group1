@@ -173,5 +173,108 @@
     </section>
   </div>
   <script src="search.js"></script>
+
+
+  <div id="filterModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Filter</h2>
+        <button type="button" id="clearFilterBtn" class="clear-btn">
+          <i class="fa-solid fa-rotate-left"></i> Clear Filter
+        </button>
+      </div>
+
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่โครงสร้างวิชา (Course Category)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="category" value="tu">
+            <span class="custom-radio"></span>
+            <span>วิชาศึกษาทั่วไป (หมวด TU)</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="category" value="major">
+            <span class="custom-radio"></span>
+            <span>วิชาเอกบังคับ / วิชาเอกเลือก</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="category" value="free">
+            <span class="custom-radio"></span>
+            <span>วิชาเลือกเสรี</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่โครงสร้างวิชา (Course Category)</label>
+        <div class="select-wrapper">
+          <select id="subCategorySelect">
+            <option value="" disabled selected>Select a arrange</option>
+            <option value="1">หมวดวิชาวิทยาศาสตร์และเทคโนโลยี</option>
+            <option value="2">หมวดวิชาสังคมศาสตร์</option>
+            <option value="3">หมวดวิชามนุษยศาสตร์</option>
+          </select>
+          <i class="fa-solid fa-chevron-down select-icon"></i>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่เกณฑ์ประเมินจากรีวิว (Ratings & Reviews)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="rating" value="5">
+            <span class="custom-radio"></span>
+            <span>คะแนน 5 ดาว</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="4">
+            <span class="custom-radio"></span>
+            <span>คะแนน 4 ดาวขึ้นไป</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="3">
+            <span class="custom-radio"></span>
+            <span>คะแนน 3 ดาวขึ้นไป</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="2">
+            <span class="custom-radio"></span>
+            <span>คะแนน 2 ดาวขึ้นไป</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">ปีการศึกษาและภาคเรียน (Semester & Year)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="semester" value="all">
+            <span class="custom-radio"></span>
+            <span>ทุกปีการศึกษา</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="semester" value="latest">
+            <span class="custom-radio"></span>
+            <span>ปีการศึกษาล่าสุด</span>
+          </label>
+        </div>
+        <div class="select-wrapper margin-top-sm">
+          <select id="termSelect">
+            <option value="" disabled selected>ภาคการเรียนที่...</option>
+            <option value="1">ภาคการศึกษาที่ 1</option>
+            <option value="2">ภาคการศึกษาที่ 2</option>
+            <option value="3">ภาคฤดูร้อน</option>
+          </select>
+          <i class="fa-solid fa-chevron-down select-icon"></i>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="applyFilterBtn" class="btn-apply">ตกลง / Apply Filter</button>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>
