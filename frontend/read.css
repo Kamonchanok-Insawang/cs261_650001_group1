@@ -25,7 +25,6 @@ body {
   align-items: stretch;
 }
 
-/* === Header === */
 .main-header {
   width: 100%;
   display: flex;
@@ -81,7 +80,6 @@ body {
   color: #262e5b;
 }
 
-/* === Course Header & Sort === */
 .course-header {
   display: flex;
   justify-content: space-between;
@@ -143,7 +141,6 @@ body {
   font-size: 12px;
 }
 
-/* === Review Grid & Cards === */
 .review-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -243,7 +240,6 @@ body {
   font-weight: 600;
 }
 
-/* === Floating Action Button === */
 .fab-btn {
   position: fixed;
   bottom: 40px;
@@ -269,9 +265,6 @@ body {
   transform: scale(1.05) translateY(-2px);
 }
 
-/* ========================================= */
-/* === Modal Overlay (ป๊อปอัพอ่านรีวิวเต็ม) === */
-/* ========================================= */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -367,7 +360,7 @@ body {
   line-height: 1.6;
   flex-grow: 1;
   margin-bottom: 40px;
-  padding: 0 40px; /* เขยิบข้อความเข้า */
+  padding: 0 40px;
 }
 
 .modal-review-footer {

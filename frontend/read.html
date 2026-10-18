@@ -15,7 +15,6 @@
 <body>
 
   <div class="app-container">
-    <!-- Header -->
     <header class="main-header">
       <div class="brand">
         <h1 class="brand-title">TU REVIEW</h1>
@@ -25,11 +24,10 @@
         <div class="user-avatar">
           <i class="fa-solid fa-user"></i>
         </div>
-        <span class="user-name">Suphaphit P.</span>
+        <span class="user-name">User Account</span>
       </div>
     </header>
 
-    <!-- Course Info & Sort Section -->
     <div class="course-header">
       <div class="course-info">
         <h2 class="course-code">CS261</h2>
@@ -49,7 +47,6 @@
       </div>
     </div>
 
-    <!-- Review Cards Grid -->
     <div class="review-grid">
       
       <!-- Card 1 -->
@@ -82,7 +79,6 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="review-card highlight-card">
         <div class="card-header">
           <div class="reviewer-info">
@@ -98,7 +94,6 @@
           </div>
         </div>
         <div class="card-body">
-          <!-- เว้นว่างไว้ -->
         </div>
         <div class="card-footer">
           <div class="stats">
@@ -112,7 +107,6 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="review-card">
         <div class="card-header">
           <div class="reviewer-info">
@@ -145,21 +139,17 @@
     </div>
   </div>
 
-  <!-- Floating Add Button -->
   <button type="button" id="addReviewBtn" class="fab-btn">
     <i class="fa-solid fa-plus"></i>
   </button>
 
-  <!-- Modal สำหรับแสดงรีวิวเต็ม -->
   <div id="fullReviewModal" class="modal-overlay">
     <div class="modal-content review-modal">
       
-      <!-- ปุ่มกากบาทปิด -->
       <button type="button" id="closeReviewModalBtn" class="close-modal-btn">
         <i class="fa-solid fa-xmark"></i>
       </button>
       
-      <!-- ส่วนหัว: รูปโปรไฟล์ ชื่อ และ วันที่ -->
       <div class="modal-reviewer-header">
         <div class="reviewer-info-left">
           <div class="reviewer-avatar large-avatar"><i class="fa-solid fa-user-secret"></i></div>
@@ -170,12 +160,10 @@
         </div>
       </div>
       
-      <!-- ส่วนเนื้อหา: ข้อความรีวิว (ดันข้อความให้ขยับเข้า) -->
       <div class="modal-review-body">
         วิชานี้ให้ทำทั้งโปรเจค ควิซ เวิร์คช็อป ไหนจะสอบ กลางภาค ปลายภาค แต่อาจารย์ใจดี
       </div>
       
-      <!-- ส่วนท้าย: คะแนนเรตติ้ง ยอดใจ และยอดวิว -->
       <div class="modal-review-footer">
         <div class="modal-stat-box">
           <span class="stat-label">Difficulty</span>

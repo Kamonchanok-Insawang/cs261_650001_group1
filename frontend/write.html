@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TU REVIEW - Write Review</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="write.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="brand">
+        <h1 class="brand-title">TU REVIEW</h1>
+        <p class="brand-sub">course reviews for better learning</p>
+      </div>
+      <!-- แก้ไข: มุมขวาบนไม่มีไอคอนคน และเปลี่ยนชื่อเป็น User Account -->
+      <div class="user-badge">
+        <div class="user-avatar"></div>
+        <span class="user-name">User Account</span>
+      </div>
+    </header>
+
+    <!-- ฟอร์มสำหรับเขียนรีวิว -->
+    <main class="write-card">
+      <form id="writeReviewForm">
+        
+        <!-- ส่วนบน: โปรไฟล์ & ตั้งค่าการแสดงชื่อ -->
+        <div class="top-section">
+          <!-- แก้ไข: ให้ตรงกับมุมขวาบน -->
+          <div class="profile-info">
+            <div class="profile-avatar"></div>
+            <span class="profile-title">User Account</span>
+          </div>
+          
+          <div class="display-name-group">
+            <label class="section-label">Display Name</label>
+            <div class="radio-container">
+              <label class="radio-item">
+                <input type="radio" name="displayName" value="realname" checked>
+                <span class="custom-radio"></span>
+                <span>Show my name</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="displayName" value="anonymous">
+                <span class="custom-radio"></span>
+                <span>Anonymous</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ส่วนกลาง: เลือกคณะ สาขา วิชา -->
+        <div class="dropdown-section">
+          <div class="form-group">
+            <label class="section-label">Faculty</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a faculty</option>
+                <option value="sci">วิทยาศาสตร์และเทคโนโลยี</option>
+                <option value="eng">วิศวกรรมศาสตร์</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="section-label">Major</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a major</option>
+                <option value="cs">วิทยาการคอมพิวเตอร์</option>
+                <option value="math">คณิตศาสตร์</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="section-label">Course</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a course</option>
+                <option value="cs261">CS261</option>
+                <option value="cs233">CS233</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ส่วนล่าง: กล่องข้อความรีวิว -->
+        <div class="form-group review-group">
+          <label class="section-label">Your Review</label>
+          <textarea class="review-textarea" placeholder="Show your experience..." required></textarea>
+        </div>
+
+        <!-- ปุ่มโพสต์ -->
+        <div class="form-actions">
+          <button type="submit" class="btn-post">Post Review</button>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <script src="write.js"></script>
+</body>
+</html>

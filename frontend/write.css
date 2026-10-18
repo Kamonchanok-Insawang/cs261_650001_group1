@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Kanit', sans-serif;
+  background-color: #f1f5f9;
+  color: #262e5b;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* === Header (ดึงมาจากหน้า Search/Read) === */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #262e5b;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.brand-sub {
+  font-size: 14px;
+  color: #5d6785;
+  margin-top: 4px;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 6px 16px 6px 6px;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #262e5b;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.write-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #262e5b;
+}
+
+.profile-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #000000;
+}
+
+.section-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 12px;
+}
+
+.radio-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid #e2e8f0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  min-width: 400px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #000000;
+  cursor: pointer;
+}
+
+.radio-item input {
+  display: none;
+}
+
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.radio-item input:checked + .custom-radio {
+  background-color: #d1d5db;
+  box-shadow: inset 0 0 0 5px #ffffff, 0 0 0 1px #d1d5db; /* ให้มีรูตรงกลาง */
+}
+
+.dropdown-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 16px;
+  border: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #a0a7ba;
+  outline: none;
+  appearance: none;
+}
+
+.select-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0a7ba;
+  pointer-events: none;
+}
+
+.review-group {
+  margin-bottom: 40px;
+}
+
+.review-textarea {
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #262e5b;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.review-textarea:focus {
+  border-color: #262e5b;
+}
+
+.review-textarea::placeholder {
+  color: #cbd5e1;
+}
+
+/* ปุ่ม Post Review */
+.form-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-post {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+  width: 400px; /* ปรับความกว้างปุ่มตามรูป */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-post:hover {
+  background-color: #172554;
+}
+
+/* Responsive เผื่อจอมือถือ */
+@media screen and (max-width: 768px) {
+  .top-section { flex-direction: column; gap: 24px; }
+  .radio-container { min-width: 100%; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .dropdown-section { grid-template-columns: 1fr; }
+  .btn-post { width: 100%; }
+}
