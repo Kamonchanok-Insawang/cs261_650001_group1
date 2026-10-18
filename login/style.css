@@ -42,3 +42,100 @@ body {
   color: #262e5b;
   margin-top: 4px;
 }
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 18px;
+  color: #a0a7ba;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.input-group input {
+  width: 100%;
+  height: 52px;
+  padding: 0 48px;
+  background-color: #ffffff;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #262e5b;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-group input::placeholder {
+  color: #9c9c9c;
+}
+
+.input-group input:focus {
+  background-color: #ffffff;
+  border-color: #262e5b;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #a0a7ba;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  width: 100%;
+  height: 50px;
+  margin-top: 8px;
+  background-color: #262e5b;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #1a2042;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.forgot-link {
+  color: #a0a7ba;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+input::-ms-reveal,
+input::-ms-clear,
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button,
+::-webkit-reveal {
+  display: none !important;
+}
+
+@media screen and (max-width: 480px) {
+  .logo-tu { font-size: 64px; }
+  .logo-sub { font-size: 26px; }
+  .input-group input { height: 48px; font-size: 14px; }
+  .btn-submit { height: 46px; font-size: 15px; }
+}

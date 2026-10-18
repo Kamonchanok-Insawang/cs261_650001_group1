@@ -16,6 +16,28 @@
       <div class="logo-tu">TU</div>
       <div class="logo-sub">Review</div>
     </div>
+    <form id="loginForm" class="login-form" novalidate>
+  <div class="input-group">
+    <i class="fa-regular fa-user input-icon"></i>
+    <input type="text" id="username" placeholder="username" autocomplete="username" required>
+  </div>
+
+  <div class="input-group">
+    <i class="fa-solid fa-lock input-icon"></i>
+    <input type="password" id="password" placeholder="password" autocomplete="current-password" required>
+    <button type="button" id="togglePassword" class="toggle-password" aria-label="Toggle password">
+      <i class="fa-regular fa-eye-slash" id="eyeIcon"></i>
+    </button>
+  </div>
+
+  <button type="submit" id="submitBtn" class="btn-submit">
+    <span>LOGIN</span>
+  </button>
+
+  <div class="form-footer">
+    <a href="#" id="forgotBtn" class="forgot-link">Forget Password?</a>
+  </div>
+</form>
   </div>
   <script src="script.js"></script>
 </body>
