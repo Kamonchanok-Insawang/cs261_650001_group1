@@ -139,3 +139,25 @@ input::-webkit-credentials-auto-fill-button,
   .input-group input { height: 48px; font-size: 14px; }
   .btn-submit { height: 46px; font-size: 15px; }
 }
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #262e5b;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast.error { background-color: #e53e3e; }
+.toast.success { background-color: #2b6cb0; }
