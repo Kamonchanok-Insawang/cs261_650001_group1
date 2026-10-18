@@ -22,3 +22,23 @@ body {
   align-items: center;
   padding: 20px;
 }
+.logo-box {
+  text-align: center;
+  margin-bottom: 40px;
+  user-select: none;
+}
+
+.logo-tu {
+  font-size: 80px;
+  font-weight: 800;
+  color: #262e5b;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+
+.logo-sub {
+  font-size: 32px;
+  font-weight: 500;
+  color: #262e5b;
+  margin-top: 4px;
+}
