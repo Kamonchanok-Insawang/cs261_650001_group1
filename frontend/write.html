@@ -15,26 +15,21 @@
 <body>
 
   <div class="app-container">
-    <!-- Header -->
     <header class="main-header">
       <div class="brand">
         <h1 class="brand-title">TU REVIEW</h1>
         <p class="brand-sub">course reviews for better learning</p>
       </div>
-      <!-- แก้ไข: มุมขวาบนไม่มีไอคอนคน และเปลี่ยนชื่อเป็น User Account -->
       <div class="user-badge">
         <div class="user-avatar"></div>
         <span class="user-name">User Account</span>
       </div>
     </header>
 
-    <!-- ฟอร์มสำหรับเขียนรีวิว -->
     <main class="write-card">
       <form id="writeReviewForm">
         
-        <!-- ส่วนบน: โปรไฟล์ & ตั้งค่าการแสดงชื่อ -->
         <div class="top-section">
-          <!-- แก้ไข: ให้ตรงกับมุมขวาบน -->
           <div class="profile-info">
             <div class="profile-avatar"></div>
             <span class="profile-title">User Account</span>
@@ -57,7 +52,6 @@
           </div>
         </div>
 
-        <!-- ส่วนกลาง: เลือกคณะ สาขา วิชา -->
         <div class="dropdown-section">
           <div class="form-group">
             <label class="section-label">Faculty</label>
@@ -96,13 +90,55 @@
           </div>
         </div>
 
-        <!-- ส่วนล่าง: กล่องข้อความรีวิว -->
-        <div class="form-group review-group">
-          <label class="section-label">Your Review</label>
-          <textarea class="review-textarea" placeholder="Show your experience..." required></textarea>
+        <div class="review-and-rating-wrapper">
+          
+          <div class="form-group rating-section">
+            <label class="section-label">Ratings</label>
+            <div class="rating-container">
+              
+              <div class="rating-row">
+                <span class="rating-text">ความยาก<br><small>(Difficulty)</small></span>
+                <div class="star-group" data-category="difficulty">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-text">ภาระงาน<br><small>(Workload)</small></span>
+                <div class="star-group" data-category="workload">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-text">ความใจดีของอาจารย์<br><small>(Instructor)</small></span>
+                <div class="star-group" data-category="instructor">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group review-group">
+            <label class="section-label">Your Review</label>
+            <textarea class="review-textarea" placeholder="Show your experience..." required></textarea>
+          </div>
+
         </div>
 
-        <!-- ปุ่มโพสต์ -->
         <div class="form-actions">
           <button type="submit" class="btn-post">Post Review</button>
         </div>

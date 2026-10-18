@@ -23,7 +23,6 @@ body {
   gap: 24px;
 }
 
-/* === Header (ดึงมาจากหน้า Search/Read) === */
 .main-header {
   display: flex;
   justify-content: space-between;
@@ -110,7 +109,7 @@ body {
 .radio-container {
   display: flex;
   align-items: center;
-  gap: 40px;
+  justify-content: space-around;
   border: 1px solid #e2e8f0;
   padding: 12px 24px;
   border-radius: 8px;
@@ -120,6 +119,8 @@ body {
 .radio-item {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
   gap: 12px;
   font-size: 14px;
   color: #000000;
@@ -141,7 +142,7 @@ body {
 
 .radio-item input:checked + .custom-radio {
   background-color: #d1d5db;
-  box-shadow: inset 0 0 0 5px #ffffff, 0 0 0 1px #d1d5db; /* ให้มีรูตรงกลาง */
+  box-shadow: inset 0 0 0 5px #ffffff, 0 0 0 1px #d1d5db;
 }
 
 .dropdown-section {
@@ -178,13 +179,77 @@ body {
   pointer-events: none;
 }
 
-.review-group {
+.review-and-rating-wrapper {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
   margin-bottom: 40px;
+  align-items: stretch;
+}
+
+.rating-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  border-radius: 8px;
+  flex-grow: 1;
+}
+
+.rating-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.4;
+}
+
+.rating-text small {
+  font-size: 12px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.star-group {
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  color: #f6ad55;
+  fill: transparent;
+  transition: all 0.2s ease;
+}
+
+.star-icon.active,
+.star-icon.hover {
+  color: #f6ad55; 
+  fill: #f6ad55;
+}
+
+.review-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .review-textarea {
-  width: 100%;
-  height: 200px;
+  flex-grow: 1;
+  min-height: 200px;
   padding: 20px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -204,7 +269,6 @@ body {
   color: #cbd5e1;
 }
 
-/* ปุ่ม Post Review */
 .form-actions {
   display: flex;
   justify-content: center;
@@ -218,7 +282,7 @@ body {
   padding: 14px 0;
   font-size: 16px;
   font-weight: 700;
-  width: 400px; /* ปรับความกว้างปุ่มตามรูป */
+  width: 400px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -227,10 +291,13 @@ body {
   background-color: #172554;
 }
 
-/* Responsive เผื่อจอมือถือ */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .top-section { flex-direction: column; gap: 24px; }
   .radio-container { min-width: 100%; flex-direction: column; align-items: flex-start; gap: 16px; }
   .dropdown-section { grid-template-columns: 1fr; }
   .btn-post { width: 100%; }
+  
+  .review-and-rating-wrapper {
+    grid-template-columns: 1fr;
+  }
 }
