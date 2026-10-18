@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TU REVIEW - Search Courses</title>
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="search.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="main-header">
+      <div class="brand">
+        <h1 class="brand-title">TU REVIEW</h1>
+        <p class="brand-sub">course reviews for better learning</p>
+      </div>
+      <div class="user-badge" id="userProfileBtn">
+        <div class="user-avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <span class="user-name">User Account</span>
+      </div>
+    </header>
+
+    <div class="search-section">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="course code">
+      </div>
+      <button type="button" id="openFilterBtn" class="filter-btn" aria-label="Open filter">
+        <i class="fa-solid fa-sliders"></i>
+      </button>
+    </div>
+
+
+    <section class="category-section">
+      <div class="category-scroll">
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-atom"></i></div>
+          <span>SCIENCE</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-gear"></i></div>
+          <span>ENGINEERING</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-palette"></i></div>
+          <span>ARTS</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <span>BUSINESS</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <span>LAW</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-stethoscope"></i></div>
+          <span>MEDICINE</span>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fa-solid fa-border-all"></i></div>
+          <span>ALL</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="popular-section">
+      <h2 class="section-title">Popular Courses</h2>
+      
+      <div class="courses-grid">
+        <div class="course-card">
+          <div class="course-info">
+            <h3 class="course-code">CS261</h3>
+            <p class="course-name">Introduction to Software Engineering</p>
+          </div>
+          <div class="course-footer">
+            <div class="rating">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <span class="score">4.0</span>
+            </div>
+            <div class="stats">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>625</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-info">
+            <h3 class="course-code">CS233</h3>
+            <p class="course-name">Computer Architecture and Operating Systems</p>
+          </div>
+          <div class="course-footer">
+            <div class="rating">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <span class="score">4.0</span>
+              </div>
+            </div>
+            <div class="stats">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>1.4k</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-info">
+            <h3 class="course-code">CS100</h3>
+            <p class="course-name">Intro to Web Applications</p>
+          </div>
+          <div class="course-footer">
+            <div class="rating">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span class="score">5.0</span>
+              </div>
+            </div>
+            <div class="stats">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>924</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card">
+          <div class="course-info">
+            <h3 class="course-code">CS216</h3>
+            <p class="course-name">Data Structures and Algorithms</p>
+          </div>
+          <div class="course-footer">
+            <div class="rating">
+              <div class="stars">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <span class="score">4.0</span>
+              </div>
+            </div>
+            <div class="stats">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>308</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="search.js"></script>
+
+
+  <div id="filterModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Filter</h2>
+        <button type="button" id="clearFilterBtn" class="clear-btn">
+          <i class="fa-solid fa-rotate-left"></i> Clear Filter
+        </button>
+      </div>
+
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่โครงสร้างวิชา (Course Category)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="category" value="tu">
+            <span class="custom-radio"></span>
+            <span>วิชาศึกษาทั่วไป (หมวด TU)</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="category" value="major">
+            <span class="custom-radio"></span>
+            <span>วิชาเอกบังคับ / วิชาเอกเลือก</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="category" value="free">
+            <span class="custom-radio"></span>
+            <span>วิชาเลือกเสรี</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่โครงสร้างวิชา (Course Category)</label>
+        <div class="select-wrapper">
+          <select id="subCategorySelect">
+            <option value="" disabled selected>Select a arrange</option>
+            <option value="1">หมวดวิชาวิทยาศาสตร์และเทคโนโลยี</option>
+            <option value="2">หมวดวิชาสังคมศาสตร์</option>
+            <option value="3">หมวดวิชามนุษยศาสตร์</option>
+          </select>
+          <i class="fa-solid fa-chevron-down select-icon"></i>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">หมวดหมู่เกณฑ์ประเมินจากรีวิว (Ratings & Reviews)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="rating" value="5">
+            <span class="custom-radio"></span>
+            <span>คะแนน 5 ดาว</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="4">
+            <span class="custom-radio"></span>
+            <span>คะแนน 4 ดาวขึ้นไป</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="3">
+            <span class="custom-radio"></span>
+            <span>คะแนน 3 ดาวขึ้นไป</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="rating" value="2">
+            <span class="custom-radio"></span>
+            <span>คะแนน 2 ดาวขึ้นไป</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">ปีการศึกษาและภาคเรียน (Semester & Year)</label>
+        <div class="radio-grid">
+          <label class="radio-item">
+            <input type="radio" name="semester" value="all">
+            <span class="custom-radio"></span>
+            <span>ทุกปีการศึกษา</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="semester" value="latest">
+            <span class="custom-radio"></span>
+            <span>ปีการศึกษาล่าสุด</span>
+          </label>
+        </div>
+        <div class="select-wrapper margin-top-sm">
+          <select id="termSelect">
+            <option value="" disabled selected>ภาคการเรียนที่...</option>
+            <option value="1">ภาคการศึกษาที่ 1</option>
+            <option value="2">ภาคการศึกษาที่ 2</option>
+            <option value="3">ภาคฤดูร้อน</option>
+          </select>
+          <i class="fa-solid fa-chevron-down select-icon"></i>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="applyFilterBtn" class="btn-apply">ตกลง / Apply Filter</button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

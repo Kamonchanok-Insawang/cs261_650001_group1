@@ -1,7 +1,5 @@
-version: '3.8'
-
 services:
-  # 1. SQL Server (MySQL Database)
+  # 1. Database (MySQL)
   db:
     image: mysql:8.0
     container_name: mysql-db
@@ -13,6 +11,11 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   # 2. Web Server (Spring Boot)
   web:
@@ -22,7 +25,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/appdb?useSSL=false&allowPublicKeyRetrieval=true
 
