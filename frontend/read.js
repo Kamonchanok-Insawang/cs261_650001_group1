@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // แสดงชื่อผู้ใช้ที่ login อยู่ แทนข้อความ "User Account"
+  try {
+    const profile = JSON.parse(localStorage.getItem('userProfile'));
+    if (profile && profile.name) {
+      document.querySelectorAll('*').forEach(el => {
+        if (el.children.length === 0 && el.textContent.trim() === 'User Account') {
+          el.textContent = profile.name;
+        }
+      });
+    }
+  } catch (e) {
+    // ไม่มีข้อมูลผู้ใช้: ปล่อยเป็น "User Account" ตามเดิม
+  }
+
   // คลิกโลโก้ TU REVIEW เพื่อกลับหน้าหลัก (search)
   const brand = document.querySelector('.brand');
   if (brand) {
