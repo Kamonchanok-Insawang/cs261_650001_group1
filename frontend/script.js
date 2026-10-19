@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       // ✨ เรียกยิง API ตรงเข้า Backend ของเพื่อนตาม Path ที่ถูกต้อง
-      const response = await fetch('http://localhost:8080/api/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -45,9 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
 
       // เช็กผลตอบกลับจาก Backend (Response status/success)
-      if (response.ok && data.status) {
-        showToast(`Welcome ${data.displayName || username}! Redirecting...`, 'success');
-
+      if (response.ok && data.success) {
+        showToast(`Welcome ${data.name || username}! Redirecting...`, 'success');
         // บันทึก Session/Profile เก็บไว้ใช้ในหน้า Search
         localStorage.setItem('userProfile', JSON.stringify(data));
 

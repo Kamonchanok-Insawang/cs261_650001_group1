@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  loginForm.addEventListener('submit', (e) => {
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value.trim();
     const password = passwordInput.value.trim();
@@ -29,7 +29,41 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    showToast(`Welcome ${username}!`, 'success');
+    try {
+      // ✨ เรียกยิง API ตรงเข้า Backend ของเพื่อนตาม Path ที่ถูกต้อง
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
+
+      const data = await response.json();
+
+      // เช็กผลตอบกลับจาก Backend (Response status/success)
+      if (response.ok && data.success) {
+        showToast(`Welcome ${data.name || username}! Redirecting...`, 'success');
+        // บันทึก Session/Profile เก็บไว้ใช้ในหน้า Search
+        localStorage.setItem('userProfile', JSON.stringify(data));
+
+        // พาย้ายหน้าไป search.html
+        setTimeout(() => {
+          window.location.href = 'search.html';
+        }, 1500);
+
+      } else {
+        // กรณีล็อกอินไม่ผ่าน หรือกรอกรหัสผิด
+        showToast(data.message || 'Invalid username or password.', 'error');
+      }
+
+    } catch (error) {
+      console.error('Login error:', error);
+      showToast('Cannot connect to Backend Server. Please make sure Backend is running.', 'error');
+    }
   });
 
   forgotBtn.addEventListener('click', (e) => {
