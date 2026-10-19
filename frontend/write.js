@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // คลิกโลโก้ TU REVIEW เพื่อกลับหน้าหลัก (search)
+  const brand = document.querySelector('.brand');
+  if (brand) {
+    brand.style.cursor = 'pointer';
+    brand.addEventListener('click', () => {
+      window.location.href = 'search.html';
+    });
+  }
+  
   const writeReviewForm = document.getElementById('writeReviewForm');
 
   if (writeReviewForm) {

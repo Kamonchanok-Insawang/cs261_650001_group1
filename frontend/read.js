@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // คลิกโลโก้ TU REVIEW เพื่อกลับหน้าหลัก (search)
+  const brand = document.querySelector('.brand');
+  if (brand) {
+    brand.style.cursor = 'pointer';
+    brand.addEventListener('click', () => {
+      window.location.href = 'search.html';
+    });
+  }
+  
   // ---------- อ่านรหัสวิชาจาก URL: read.html?code=CS261 ----------
   const params = new URLSearchParams(window.location.search);
   const courseCode = (params.get('code') || '').trim().toUpperCase();
