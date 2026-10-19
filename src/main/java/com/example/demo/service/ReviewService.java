@@ -6,11 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import com.example.demo.dao.ReviewDao;
-import com.example.demo.model.Review;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -29,30 +24,31 @@ public class ReviewService {
 
     public List<Review> getReviewsByTargetId(Integer targetId) {
         return reviewRepository.findByTargetId(targetId);
-    private ReviewDao reviewDao;
+    }
 
-    public String deleteReviewProcess(Long reviewId, String currentUserId) {
-        Optional<Review> reviewOpt = reviewDao.findById(reviewId);
+    public String deleteReviewProcess(Integer reviewId, String currentUserId) {
+        Optional<Review> reviewOpt = reviewRepository.findById(reviewId);
         if (reviewOpt.isEmpty()) {
             return "REVIEW_NOT_FOUND";
         }
 
         Review review = reviewOpt.get();
 
-        if (!review.getUserId().equals(currentUserId)) {
+        // ตรวจสิทธิ์: ต้องเป็นเจ้าของรีวิว
+        if (!String.valueOf(review.getUserId()).equals(currentUserId)) {
             return "UNAUTHORIZED";
         }
 
-        String courseId = review.getCourseId();
+        Integer targetId = review.getTargetId();
+        reviewRepository.deleteById(reviewId);
 
-        boolean deleted = reviewDao.deleteById(reviewId);
+        // คำนวณคะแนนเฉลี่ยใหม่หลังลบ
+        double avg = reviewRepository.findByTargetId(targetId).stream()
+                .mapToInt(Review::getRating)
+                .average()
+                .orElse(0.0);
+        avg = Math.round(avg * 10.0) / 10.0;
 
-        if (deleted) {
-            double newAvgRating = reviewDao.calculateAverageRating(courseId);
-
-            return "SUCCESS:" + newAvgRating;
-        }
-
-        return "DELETE_FAILED";
+        return "SUCCESS:" + avg;
     }
 }
