@@ -25,7 +25,6 @@ body {
   align-items: stretch;
 }
 
-/* === Header === */
 .main-header {
   width: 100%;
   display: flex;
@@ -81,7 +80,6 @@ body {
   color: #262e5b;
 }
 
-/* === Course Header & Sort === */
 .course-header {
   display: flex;
   justify-content: space-between;
@@ -143,7 +141,6 @@ body {
   font-size: 12px;
 }
 
-/* === Review Grid & Cards === */
 .review-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -243,7 +240,6 @@ body {
   font-weight: 600;
 }
 
-/* === Floating Action Button === */
 .fab-btn {
   position: fixed;
   bottom: 40px;
@@ -269,9 +265,6 @@ body {
   transform: scale(1.05) translateY(-2px);
 }
 
-/* ========================================= */
-/* === Modal Overlay (ป๊อปอัพอ่านรีวิวเต็ม) === */
-/* ========================================= */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -294,22 +287,25 @@ body {
   visibility: visible;
 }
 
-.review-modal {
+.modal-content {
   background-color: #ffffff;
   border-radius: 24px;
   padding: 40px;
   width: 100%;
-  max-width: 600px;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
   position: relative;
   transform: scale(0.9);
   transition: transform 0.3s ease;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-.modal-overlay.active .review-modal {
+.review-modal {
+  max-width: 600px;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay.active .modal-content {
   transform: scale(1);
 }
 
@@ -367,14 +363,30 @@ body {
   line-height: 1.6;
   flex-grow: 1;
   margin-bottom: 40px;
-  padding: 0 40px; /* เขยิบข้อความเข้า */
+  padding: 0 40px;
 }
 
 .modal-review-footer {
   display: flex;
   justify-content: space-between; 
-  align-items: center;
+  align-items: flex-end;
   padding: 0 10px; 
+  border-top: 1px solid #e2e8f0;
+  padding-top: 24px;
+  margin-top: auto;
+}
+
+.modal-ratings-grid {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.modal-social-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
 }
 
 .modal-stat-box {
@@ -384,9 +396,9 @@ body {
 }
 
 .stat-label {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  color: #000000;
+  color: #64748b;
 }
 
 .stat-value {
@@ -401,6 +413,121 @@ body {
   font-weight: 700;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-delete {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.btn-delete:hover {
+  color: #ef4444;
+}
+
+.delete-modal-content {
+  max-width: 400px;
+  text-align: center;
+  padding: 32px;
+}
+.delete-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #fee2e2;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px auto;
+}
+.delete-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 12px;
+}
+.delete-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.delete-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.btn-cancel-delete, .btn-confirm-delete {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  flex: 1;
+  transition: background-color 0.2s;
+}
+.btn-cancel-delete {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+.btn-cancel-delete:hover { background-color: #e2e8f0; }
+.btn-confirm-delete {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+.btn-confirm-delete:hover { background-color: #dc2626; }
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 64px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  margin-top: 20px;
+}
+.empty-icon-wrapper {
+  font-size: 64px;
+  color: #e2e8f0;
+  margin-bottom: 24px;
+}
+.empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #262e5b;
+  margin-bottom: 8px;
+}
+.empty-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+.btn-primary {
+  background-color: #262e5b;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-primary:hover {
+  background-color: #1a2042;
+}
+
 @media screen and (max-width: 600px) {
   body { padding: 16px; }
   .brand-title { font-size: 28px; }
@@ -408,9 +535,10 @@ body {
   .course-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .fab-btn { bottom: 24px; right: 24px; width: 56px; height: 56px; }
   
-  .review-modal { padding: 24px; }
+  .modal-content { padding: 24px; }
   .modal-reviewer-header { flex-direction: column; align-items: flex-start; gap: 8px; padding-right: 0;}
   .modal-review-body { font-size: 16px; padding: 0 10px; }
   .reviewer-name-large { font-size: 24px; }
   .modal-review-footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .modal-social-stats { align-items: flex-start; flex-direction: row; gap: 20px; }
 }
