@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // คลิกโลโก้ TU REVIEW เพื่อกลับหน้าหลัก (search)
+  // คลิกโลโก้ TU REVIEW เพื่อกลับหน้าหลัก (search)
   const brand = document.querySelector('.brand');
   if (brand) {
     brand.style.cursor = 'pointer';
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'search.html';
     });
   }
-  
+
   // ---------- อ่านรหัสวิชาจาก URL: read.html?code=CS261 ----------
   const params = new URLSearchParams(window.location.search);
   const courseCode = (params.get('code') || '').trim().toUpperCase();
@@ -33,6 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const fullReviewModal = document.getElementById('fullReviewModal');
   const closeReviewModalBtn = document.getElementById('closeReviewModalBtn');
 
+    // หา element ชื่อ/ไอคอนผู้เขียนใน modal ตอนโหลดหน้า (ตอนนี้ยังเป็นข้อความตัวอย่าง "Anonymous")
+  const modalNameEl = fullReviewModal
+    ? Array.from(fullReviewModal.querySelectorAll('*'))
+        .find(el => el.children.length === 0 && el.textContent.trim() === 'Anonymous')
+    : null;
+  const modalAvatarIcon = fullReviewModal
+    ? fullReviewModal.querySelector('.fa-user-secret, .fa-user')
+    : null;
+
   if (closeReviewModalBtn) {
     closeReviewModalBtn.addEventListener('click', () => {
       fullReviewModal.classList.remove('active');
@@ -53,24 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function openFullReview(review) {
-    document.querySelector('.modal-review-body').textContent = review.comment || '';
-    document.querySelector('.review-date-time').textContent = formatDate(review.createdAt);
-    // ข้อมูลคะแนนแยกหมวดและยอดไลก์ยังไม่มีใน API (Sprint 2) จึงซ่อนไว้
-    const ratingsGrid = document.querySelector('.modal-ratings-grid');
-    const socialStats = document.querySelector('.modal-social-stats');
-    if (ratingsGrid) ratingsGrid.style.display = 'none';
-    if (socialStats) socialStats.style.display = 'none';
-    fullReviewModal.classList.add('active');
-  }
-
-  // ---------- สร้างการ์ดรีวิว (ใช้ textContent กันโค้ดแปลกปลอมในคอมเมนต์) ----------
-  function createStars(rating) {
+  // ---------- ดาว ----------
+  function createStars(rating, showNumber) {
     const stars = document.createElement('div');
     stars.className = 'stars';
+    const rounded = Math.round(rating);
     for (let i = 1; i <= 5; i++) {
       const star = document.createElement('i');
-      if (i <= rating) {
+      if (i <= rounded) {
         star.className = 'fa-solid fa-star';
       } else {
         star.className = 'fa-regular fa-star';
@@ -78,29 +77,91 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       stars.appendChild(star);
     }
+    if (showNumber) {
+      const num = document.createElement('span');
+      num.textContent = Number(rating).toFixed(1);
+      num.style.marginLeft = '6px';
+      num.style.fontSize = '0.85em';
+      stars.appendChild(num);
+    }
     return stars;
   }
 
+  // ---------- คะแนน 3 ด้านใน modal ----------
+  function fillModalRatings(review) {
+    const grid = document.querySelector('.modal-ratings-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    const rows = [
+      ['ความยาก (Difficulty)', review.difficultyRating],
+      ['ภาระงาน (Workload)', review.workloadRating],
+      ['ความใจดีของอาจารย์ (Instructor)', review.instructorRating]
+    ];
+    let count = 0;
+    rows.forEach(([label, value]) => {
+      if (value === null || value === undefined) return;
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;';
+      const l = document.createElement('span');
+      l.textContent = label;
+      row.appendChild(l);
+      row.appendChild(createStars(value, false));
+      grid.appendChild(row);
+      count++;
+    });
+    grid.style.display = count > 0 ? '' : 'none';
+  }
+
+  function openFullReview(review) {
+    document.querySelector('.modal-review-body').textContent = review.comment || '';
+    document.querySelector('.review-date-time').textContent = formatDate(review.createdAt);
+
+            // ชื่อผู้เขียนและไอคอนใน modal
+    const shownName = review.authorName || 'Anonymous';
+    if (modalNameEl) modalNameEl.textContent = shownName;
+    if (modalAvatarIcon) {
+      modalAvatarIcon.className = shownName === 'Anonymous'
+        ? 'fa-solid fa-user-secret'
+        : 'fa-solid fa-user';
+    }
+
+    fillModalRatings(review);
+
+    // ยอดไลก์/วิวยังไม่มีใน API (Sprint 2) จึงซ่อนไว้
+    const socialStats = document.querySelector('.modal-social-stats');
+    if (socialStats) socialStats.style.display = 'none';
+
+    fullReviewModal.classList.add('active');
+  }
+
+  // ---------- สร้างการ์ดรีวิว (ใช้ textContent กันโค้ดแปลกปลอมในคอมเมนต์) ----------
   function createCard(review) {
     const card = document.createElement('div');
     card.className = 'review-card';
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => openFullReview(review));
 
     const header = document.createElement('div');
     header.className = 'card-header';
+
+    const authorName = review.authorName || 'Anonymous';
+    const isAnonymous = authorName === 'Anonymous';
 
     const info = document.createElement('div');
     info.className = 'reviewer-info';
     const avatar = document.createElement('div');
     avatar.className = 'reviewer-avatar';
-    avatar.innerHTML = '<i class="fa-solid fa-user-secret"></i>';
+    avatar.innerHTML = isAnonymous
+      ? '<i class="fa-solid fa-user-secret"></i>'
+      : '<i class="fa-solid fa-user"></i>';
     const name = document.createElement('span');
     name.className = 'reviewer-name';
-    name.textContent = 'Anonymous';
+    name.textContent = authorName;
     info.appendChild(avatar);
     info.appendChild(name);
 
     header.appendChild(info);
-    header.appendChild(createStars(review.rating));
+    header.appendChild(createStars(review.rating, true));
 
     const body = document.createElement('div');
     body.className = 'card-body';
@@ -111,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const more = document.createElement('span');
       more.className = 'read-more';
       more.textContent = 'อ่านเพิ่มเติม';
-      more.addEventListener('click', () => openFullReview(review));
       body.appendChild(more);
     } else {
       body.textContent = comment;
@@ -147,6 +207,24 @@ document.addEventListener('DOMContentLoaded', () => {
         ? `คะแนนเฉลี่ย ${data.averageRating.toFixed(1)} / 5 (${data.reviewCount} รีวิว)`
         : 'ยังไม่มีคะแนน';
       nameEl.insertAdjacentElement('afterend', summary);
+
+      // เฉลี่ยรายด้าน
+      const parts = [];
+      if (data.averageDifficulty !== null && data.averageDifficulty !== undefined) {
+        parts.push(`ความยาก ${data.averageDifficulty.toFixed(1)}`);
+      }
+      if (data.averageWorkload !== null && data.averageWorkload !== undefined) {
+        parts.push(`ภาระงาน ${data.averageWorkload.toFixed(1)}`);
+      }
+      if (data.averageInstructor !== null && data.averageInstructor !== undefined) {
+        parts.push(`ความใจดีอาจารย์ ${data.averageInstructor.toFixed(1)}`);
+      }
+      if (parts.length > 0) {
+        const detail = document.createElement('p');
+        detail.className = 'course-name';
+        detail.textContent = parts.join('  ·  ');
+        summary.insertAdjacentElement('afterend', detail);
+      }
 
       if (data.reviewCount === 0) {
         emptyState.style.display = '';   // แสดงสถานะ "ยังไม่มีรีวิว"

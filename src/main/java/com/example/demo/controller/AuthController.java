@@ -51,11 +51,12 @@ public class AuthController {
             TuAuthResponse result = response.getBody();
 
             if (result != null && result.isStatus()) {
-                return ResponseEntity.ok(new LoginResponse(
+                 return ResponseEntity.ok(new LoginResponse(
                         true,
                         "เข้าสู่ระบบสำเร็จ",
                         result.getDisplayNameTh(),
-                        result.getType()
+                        result.getType(),
+                        request.getUsername().trim()
                 ));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

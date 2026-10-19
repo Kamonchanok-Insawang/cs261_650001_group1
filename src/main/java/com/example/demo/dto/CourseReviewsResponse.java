@@ -7,13 +7,20 @@ public record CourseReviewsResponse(
         String code,
         String name,
         double averageRating,
+        Double averageDifficulty,
+        Double averageWorkload,
+        Double averageInstructor,
         int reviewCount,
         List<ReviewItem> reviews) {
 
-    // ตั้งใจไม่ส่ง userId กลับ เพื่อให้รีวิวไม่เปิดเผยชื่อผู้เขียน (US8)
+    // ไม่ส่ง userId กลับ; authorName มาจากระบบ anonymity (ซ่อน = "Anonymous")
     public record ReviewItem(
             Integer reviewId,
-            Integer rating,
+            Double rating,
+            Integer difficultyRating,
+            Integer workloadRating,
+            Integer instructorRating,
+            String authorName,
             String comment,
             LocalDateTime createdAt) {}
 }

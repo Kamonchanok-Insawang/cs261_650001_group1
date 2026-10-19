@@ -74,7 +74,7 @@ class ReviewAnonymityServiceTest {
         givenReviewOwnedBy(7);
         ReviewAnonymity existing = new ReviewAnonymity();
         existing.setReviewId(10);
-        existing.setOwnerUserId(7);
+        existing.setOwnerUserId(7L);
         existing.setAnonymous(false);
         existing.setAuthorName("Suphaphit P.");
         when(anonRepo.findById(10)).thenReturn(Optional.of(existing));
