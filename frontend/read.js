@@ -22,12 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
   const addReviewBtn = document.getElementById('addReviewBtn');
   const sortSelect = document.getElementById('sortSelect');
+  const emptyStateWriteBtn = document.getElementById('emptyStateWriteBtn');
 
   if(addReviewBtn) {
     addReviewBtn.addEventListener('click', () => {
-      alert("กำลังไปยังหน้าสำหรับเขียนรีวิว..."); 
+      window.location.href = 'write.html';
+    });
+  }
+  
+  if(emptyStateWriteBtn) {
+    emptyStateWriteBtn.addEventListener('click', () => {
+      window.location.href = 'write.html'; 
     });
   }
 
@@ -35,6 +43,45 @@ document.addEventListener('DOMContentLoaded', () => {
     sortSelect.addEventListener('change', (e) => {
       const selectedValue = e.target.value;
       console.log(`เรียงลำดับรีวิวตาม: ${selectedValue}`);
+    });
+  }
+
+  const deleteBtns = document.querySelectorAll('.btn-delete');
+  const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+  const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+  let cardToDelete = null;
+
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cardToDelete = btn.closest('.review-card');
+      deleteConfirmModal.classList.add('active');
+    });
+  });
+
+  if (cancelDeleteBtn) {
+    cancelDeleteBtn.addEventListener('click', () => {
+      deleteConfirmModal.classList.remove('active');
+      cardToDelete = null;
+    });
+  }
+  if (deleteConfirmModal) {
+    deleteConfirmModal.addEventListener('click', (e) => {
+      if (e.target === deleteConfirmModal) {
+        deleteConfirmModal.classList.remove('active');
+        cardToDelete = null;
+      }
+    });
+  }
+
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener('click', () => {
+      if (cardToDelete) {
+        cardToDelete.remove();
+      }
+      deleteConfirmModal.classList.remove('active');
+      cardToDelete = null;
     });
   }
 });

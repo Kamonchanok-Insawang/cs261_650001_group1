@@ -29,6 +29,7 @@ services:
         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/appdb?useSSL=false&allowPublicKeyRetrieval=true
+      TU_API_APPLICATION_KEY: ${TU_API_KEY}
 
 volumes:
   db_data:

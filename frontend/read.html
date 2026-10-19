@@ -47,21 +47,34 @@
       </div>
     </div>
 
+    <div class="empty-state">
+      <div class="empty-icon-wrapper">
+        <i class="fa-solid fa-box-open"></i>
+      </div>
+      <h3 class="empty-title">ยังไม่มีรีวิวสำหรับวิชานี้...</h3>
+      <p class="empty-desc">มาเป็นคนแรกที่แบ่งปันประสบการณ์เพื่อเป็นแนวทางให้เพื่อนๆ กันเถอะ!</p>
+      <button class="btn-primary" id="emptyStateWriteBtn">เขียนรีวิวเลย</button>
+    </div>
+
     <div class="review-grid">
-      
-      <!-- Card 1 -->
-      <div class="review-card">
+
+      <div class="review-card" id="myReviewCard">
         <div class="card-header">
           <div class="reviewer-info">
             <div class="reviewer-avatar"><i class="fa-solid fa-user"></i></div>
             <span class="reviewer-name">Suphaphit P.</span>
           </div>
-          <div class="stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+          <div class="header-actions">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <button class="btn-delete" title="Delete Review">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
           </div>
         </div>
         <div class="card-body">
@@ -145,7 +158,6 @@
 
   <div id="fullReviewModal" class="modal-overlay">
     <div class="modal-content review-modal">
-      
       <button type="button" id="closeReviewModalBtn" class="close-modal-btn">
         <i class="fa-solid fa-xmark"></i>
       </button>
@@ -165,37 +177,55 @@
       </div>
       
       <div class="modal-review-footer">
-        <div class="modal-stat-box">
-          <span class="stat-label">Difficulty</span>
-          <div class="stat-value">
-            <div class="stars">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star" style="color: #e2e8f0;"></i>
+        <div class="modal-ratings-grid">
+          <div class="modal-stat-box">
+            <span class="stat-label">Difficulty</span>
+            <div class="stat-value">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#f6ad55" stroke="#f6ad55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span class="score">4.0</span>
             </div>
-            <span class="score">4.0</span>
+          </div>
+          <div class="modal-stat-box">
+            <span class="stat-label">Workload</span>
+            <div class="stat-value">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#f6ad55" stroke="#f6ad55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span class="score">3.5</span>
+            </div>
+          </div>
+          <div class="modal-stat-box">
+            <span class="stat-label">Instructor</span>
+            <div class="stat-value">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#f6ad55" stroke="#f6ad55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span class="score">5.0</span>
+            </div>
           </div>
         </div>
         
-        <div class="modal-stat-box">
-          <span class="stat-label">Favorite</span>
-          <div class="stat-value">
+        <div class="modal-social-stats">
+          <div class="stats">
             <i class="fa-regular fa-heart"></i>
             <span>861</span>
           </div>
-        </div>
-        
-        <div class="modal-stat-box">
-          <span class="stat-label">Viewers</span>
-          <div class="stat-value">
-            <i class="fa-solid fa-chart-simple" style="color: #4a5568;"></i>
+          <div class="stats">
+            <i class="fa-solid fa-chart-simple"></i>
             <span>924</span>
           </div>
         </div>
       </div>
-      
+    </div>
+  </div>
+
+  <div id="deleteConfirmModal" class="modal-overlay">
+    <div class="modal-content delete-modal-content">
+      <div class="delete-icon-wrapper">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 class="delete-title">คุณต้องการลบรีวิวนี้ใช่หรือไม่?</h3>
+      <p class="delete-desc">การกระทำนี้ไม่สามารถย้อนกลับได้ ข้อมูลรีวิวของคุณจะถูกลบออกจากระบบอย่างถาวร</p>
+      <div class="delete-actions">
+        <button id="cancelDeleteBtn" class="btn-cancel-delete">ยกเลิก</button>
+        <button id="confirmDeleteBtn" class="btn-confirm-delete">ลบรีวิว</button>
+      </div>
     </div>
   </div>
 
