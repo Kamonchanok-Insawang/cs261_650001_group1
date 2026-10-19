@@ -18,7 +18,7 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    // GET /api/courses/CS261  -> รายวิชาเดียวตามรหัส
+    // GET /api/courses/CS261
     @GetMapping("/{code}")
     public ResponseEntity<?> getByCode(@PathVariable String code) {
         return courseService.findByCode(code)
@@ -27,9 +27,18 @@ public class CourseController {
                         .body(Map.of("message", "ไม่พบรายวิชา")));
     }
 
-    // GET /api/courses?keyword=CS  -> ค้นหาบางส่วนของรหัส
+    // GET /api/courses?keyword=CS
     @GetMapping
     public ResponseEntity<List<Course>> search(@RequestParam(defaultValue = "") String keyword) {
         return ResponseEntity.ok(courseService.search(keyword));
+    }
+
+    // GET /api/courses/CS261/reviews
+    @GetMapping("/{code}/reviews")
+    public ResponseEntity<?> getReviews(@PathVariable String code) {
+        return courseService.getCourseReviews(code)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(Map.of("message", "ไม่พบรายวิชา")));
     }
 }
