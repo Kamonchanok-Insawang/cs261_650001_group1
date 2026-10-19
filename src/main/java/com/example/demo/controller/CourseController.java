@@ -33,10 +33,12 @@ public class CourseController {
         return ResponseEntity.ok(courseService.search(keyword));
     }
 
-    // GET /api/courses/CS261/reviews
+        // GET /api/courses/CS261/reviews  (header X-User-Id ไม่บังคับ ใช้ทำเครื่องหมายรีวิวของตัวเอง)
     @GetMapping("/{code}/reviews")
-    public ResponseEntity<?> getReviews(@PathVariable String code) {
-        return courseService.getCourseReviews(code)
+    public ResponseEntity<?> getReviews(
+            @PathVariable String code,
+            @RequestHeader(value = "X-User-Id", required = false) String currentUserId) {
+        return courseService.getCourseReviews(code, currentUserId)
                 .<ResponseEntity<?>>map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body(Map.of("message", "ไม่พบรายวิชา")));

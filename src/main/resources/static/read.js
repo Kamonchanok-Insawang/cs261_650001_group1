@@ -55,6 +55,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+    // ---------- รหัสนักศึกษาของผู้ที่ login อยู่ ----------
+  function getMyStudentId() {
+    try {
+      const p = JSON.parse(localStorage.getItem('userProfile'));
+      return p && p.studentId ? String(p.studentId) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+  const myId = getMyStudentId();
+
+  // ---------- Modal ยืนยันการลบรีวิว ----------
+  const deleteModal = document.getElementById('deleteConfirmModal');
+  const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+  const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+  let pendingDeleteId = null;
+
+  function closeDeleteModal() {
+    pendingDeleteId = null;
+    if (deleteModal) deleteModal.classList.remove('active');
+  }
+
+  if (cancelDeleteBtn) cancelDeleteBtn.addEventListener('click', closeDeleteModal);
+  if (deleteModal) {
+    deleteModal.addEventListener('click', (e) => {
+      if (e.target === deleteModal) closeDeleteModal();
+    });
+  }
+  if (confirmDeleteBtn) {
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (!pendingDeleteId || !myId) return;
+      try {
+        const res = await fetch('/api/reviews/' + pendingDeleteId, {
+          method: 'DELETE',
+          headers: { 'X-User-Id': myId }
+        });
+        if (res.ok) {
+          window.location.reload();
+          return;
+        }
+        const body = await res.json().catch(() => ({}));
+        alert(body.message || 'ลบรีวิวไม่สำเร็จ');
+      } catch (e) {
+        alert('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้');
+      }
+      closeDeleteModal();
+    });
+  }
+
   function formatDate(iso) {
     return new Date(iso).toLocaleString('th-TH-u-ca-gregory', {
       day: 'numeric', month: 'short', year: 'numeric',
@@ -161,7 +210,26 @@ document.addEventListener('DOMContentLoaded', () => {
     info.appendChild(name);
 
     header.appendChild(info);
-    header.appendChild(createStars(review.rating, true));
+    const starsEl = createStars(review.rating, true);
+    if (review.mine) {
+      const actions = document.createElement('div');
+      actions.className = 'header-actions';
+      actions.appendChild(starsEl);
+
+      const delBtn = document.createElement('button');
+      delBtn.className = 'btn-delete';
+      delBtn.title = 'Delete Review';
+      delBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();   // ไม่ให้เปิด modal อ่านรีวิวเต็ม
+        pendingDeleteId = review.reviewId;
+        if (deleteModal) deleteModal.classList.add('active');
+      });
+      actions.appendChild(delBtn);
+      header.appendChild(actions);
+    } else {
+      header.appendChild(starsEl);
+    }
 
     const body = document.createElement('div');
     body.className = 'card-body';
@@ -185,8 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- ดึงข้อมูลจริงจาก backend ----------
   async function loadReviews() {
     try {
-      const response = await fetch(`/api/courses/${encodeURIComponent(courseCode)}/reviews`);
-
+      const response = await fetch(
+        `/api/courses/${encodeURIComponent(courseCode)}/reviews`,
+        { headers: myId ? { 'X-User-Id': myId } : {} }
+      );
       if (response.status === 404) {
         nameEl.textContent = 'ไม่พบรายวิชา';
         return;
