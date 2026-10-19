@@ -108,4 +108,60 @@ document.addEventListener('DOMContentLoaded', () => {
       goToCourse(code);
     });
   });
+
+    // เติมคะแนนเฉลี่ยและจำนวนรีวิวจริงจาก API ให้การ์ดวิชา (แทนค่าตัวอย่างใน HTML)
+  document.querySelectorAll('.course-card').forEach(async (card) => {
+    const footer = card.querySelector('.course-footer');
+    if (!footer) return;
+
+    const code = card.querySelector('.course-code').textContent.trim();
+    footer.innerHTML = '';   // ล้างค่าตัวอย่างก่อน
+
+    try {
+      const res = await fetch(`/api/courses/${encodeURIComponent(code)}/reviews`);
+      if (!res.ok) return;
+      const data = await res.json();
+
+      if (data.reviewCount === 0) {
+        const empty = document.createElement('span');
+        empty.className = 'score';
+        empty.textContent = 'ยังไม่มีรีวิว';
+        footer.appendChild(empty);
+        return;
+      }
+
+      // ดาว + คะแนนเฉลี่ย
+      const rating = document.createElement('div');
+      rating.className = 'rating';
+      const stars = document.createElement('div');
+      stars.className = 'stars';
+      const rounded = Math.round(data.averageRating);
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('i');
+        star.className = i <= rounded ? 'fa-solid fa-star' : 'fa-regular fa-star';
+        stars.appendChild(star);
+      }
+      const score = document.createElement('span');
+      score.className = 'score';
+      score.textContent = data.averageRating.toFixed(1);
+      rating.appendChild(stars);
+      rating.appendChild(score);
+
+      // จำนวนรีวิว
+      const stats = document.createElement('div');
+      stats.className = 'stats';
+      const icon = document.createElement('i');
+      icon.className = 'fa-regular fa-comment';
+      const count = document.createElement('span');
+      count.textContent = data.reviewCount + ' รีวิว';
+      stats.appendChild(icon);
+      stats.appendChild(count);
+
+      footer.appendChild(rating);
+      footer.appendChild(stats);
+    } catch (e) {
+      // โหลดไม่ได้: ปล่อยส่วนล่างของการ์ดว่าง
+    }
+  });
+  
 });
