@@ -40,7 +40,12 @@ public class CourseService {
         return courseRepository.findByCodeContainingIgnoreCase(keyword.trim());
     }
 
-    public Optional<CourseReviewsResponse> getCourseReviews(String code) {
+        public Optional<CourseReviewsResponse> getCourseReviews(String code) {
+        return getCourseReviews(code, null);
+    }
+
+    // currentUserId: รหัสผู้ดู (ถ้ามี) ใช้ทำเครื่องหมายรีวิวของตัวเอง ไม่ส่ง userId ออกไป
+    public Optional<CourseReviewsResponse> getCourseReviews(String code, String currentUserId) {
         return findByCode(code).map(course -> {
             List<Review> reviews = reviewRepository.findByTargetId(course.getId());
 
@@ -59,7 +64,9 @@ public class CourseService {
                             r.getReviewId(), r.getRating(),
                             r.getDifficultyRating(), r.getWorkloadRating(), r.getInstructorRating(),
                             displayName(anon.get(r.getReviewId())),
-                            r.getComment(), r.getCreatedAt()))
+                            r.getComment(), r.getCreatedAt(),
+                            currentUserId != null
+                                    && String.valueOf(r.getUserId()).equals(currentUserId)))
                     .toList();
 
             return new CourseReviewsResponse(course.getCode(), course.getName(), avg,

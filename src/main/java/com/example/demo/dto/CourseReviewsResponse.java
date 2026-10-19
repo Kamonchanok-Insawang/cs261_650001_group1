@@ -14,7 +14,7 @@ public record CourseReviewsResponse(
         List<ReviewItem> reviews) {
 
     // ไม่ส่ง userId กลับ; authorName มาจากระบบ anonymity (ซ่อน = "Anonymous")
-    public record ReviewItem(
+        public record ReviewItem(
             Integer reviewId,
             Double rating,
             Integer difficultyRating,
@@ -22,5 +22,6 @@ public record CourseReviewsResponse(
             Integer instructorRating,
             String authorName,
             String comment,
-            LocalDateTime createdAt) {}
+            LocalDateTime createdAt,
+            boolean mine) {}
 }
