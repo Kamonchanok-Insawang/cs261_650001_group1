@@ -172,18 +172,26 @@
       </div>
     </section>
   </div>
+
+    <div id="toastNotification" class="toast hidden">
+      <div class="toast-icon">
+        <i class="fa-solid fa-circle-exclamation"></i>
+      </div>
+      <div class="toast-message">ไม่พบรายวิชาที่คุณค้นหา กรุณาลองใหม่อีกครั้ง</div>
+    </div>
   <script src="search.js"></script>
 
 
   <div id="filterModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">Filter</h2>
-        <button type="button" id="clearFilterBtn" class="clear-btn">
-          <i class="fa-solid fa-rotate-left"></i> Clear Filter
-        </button>
-      </div>
-
+      <div class="modal-content">
+        <div class="modal-scroll-area">
+          
+          <div class="modal-header">
+            <h2 class="modal-title">Filter</h2>
+            <button type="button" id="clearFilterBtn" class="clear-btn">
+              <i class="fa-solid fa-rotate-left"></i> Clear Filter
+            </button>
+          </div>
 
       <div class="filter-group">
         <label class="filter-label">หมวดหมู่โครงสร้างวิชา (Course Category)</label>
