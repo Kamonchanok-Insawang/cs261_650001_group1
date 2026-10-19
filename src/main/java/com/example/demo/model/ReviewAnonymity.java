@@ -13,7 +13,7 @@ public class ReviewAnonymity {
 
     /** เจ้าของรีวิว: เก็บเสมอ แต่ห้ามส่งออก API */
     @Column(name = "OwnerUserID", nullable = false)
-    private Integer ownerUserId;
+    private Long ownerUserId;
 
     @Column(name = "IsAnonymous", nullable = false)
     private boolean anonymous = true;
@@ -36,8 +36,8 @@ public class ReviewAnonymity {
     public Integer getReviewId() { return reviewId; }
     public void setReviewId(Integer reviewId) { this.reviewId = reviewId; }
 
-    public Integer getOwnerUserId() { return ownerUserId; }
-    public void setOwnerUserId(Integer ownerUserId) { this.ownerUserId = ownerUserId; }
+    public Long getOwnerUserId() { return ownerUserId; }
+    public void setOwnerUserId(Long ownerUserId) { this.ownerUserId = ownerUserId; }
 
     public boolean isAnonymous() { return anonymous; }
     public void setAnonymous(boolean anonymous) { this.anonymous = anonymous; }

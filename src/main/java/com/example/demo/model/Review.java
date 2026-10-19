@@ -7,19 +7,36 @@ import java.time.LocalDateTime;
 @Table(name = "Reviews")
 public class Review {
 
+    public Review(long userId, int targetId, int rating, String comment) {
+    this.userId = userId;
+    this.targetId = targetId;
+    this.rating = (double) rating;
+    this.comment = comment;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ReviewID")
     private Integer reviewId;
 
     @Column(name = "UserID", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "TargetID", nullable = false)
     private Integer targetId;
 
+    /** คะแนนรวม = ค่าเฉลี่ยของ 3 ด้าน (คำนวณใน ReviewService) */
     @Column(name = "Rating", nullable = false)
-    private Integer rating;
+    private Double rating;
+
+    @Column(name = "DifficultyRating")
+    private Integer difficultyRating;
+
+    @Column(name = "WorkloadRating")
+    private Integer workloadRating;
+
+    @Column(name = "InstructorRating")
+    private Integer instructorRating;
 
     @Column(name = "Comment", length = 1000)
     private String comment;
@@ -27,28 +44,28 @@ public class Review {
     @Column(name = "CreatedAt")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // --- Constructor ---
     public Review() {}
 
-    public Review(Integer userId, Integer targetId, Integer rating, String comment) {
-        this.userId = userId;
-        this.targetId = targetId;
-        this.rating = rating;
-        this.comment = comment;
-    }
-
-    // --- Getters & Setters ---
     public Integer getReviewId() { return reviewId; }
     public void setReviewId(Integer reviewId) { this.reviewId = reviewId; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public Integer getTargetId() { return targetId; }
     public void setTargetId(Integer targetId) { this.targetId = targetId; }
 
-    public Integer getRating() { return rating; }
-    public void setRating(Integer rating) { this.rating = rating; }
+    public Double getRating() { return rating; }
+    public void setRating(Double rating) { this.rating = rating; }
+
+    public Integer getDifficultyRating() { return difficultyRating; }
+    public void setDifficultyRating(Integer v) { this.difficultyRating = v; }
+
+    public Integer getWorkloadRating() { return workloadRating; }
+    public void setWorkloadRating(Integer v) { this.workloadRating = v; }
+
+    public Integer getInstructorRating() { return instructorRating; }
+    public void setInstructorRating(Integer v) { this.instructorRating = v; }
 
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }

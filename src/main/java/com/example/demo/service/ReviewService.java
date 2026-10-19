@@ -3,10 +3,14 @@ package com.example.demo.service;
 import com.example.demo.model.Review;
 import com.example.demo.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class ReviewService {
@@ -15,6 +19,20 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
 
     public Review createReview(Review review) {
+        List<Integer> parts = Stream.of(
+                        review.getDifficultyRating(),
+                        review.getWorkloadRating(),
+                        review.getInstructorRating())
+                .filter(Objects::nonNull)
+                .toList();
+
+        if (parts.size() != 3 || parts.stream().anyMatch(v -> v < 1 || v > 5)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "กรุณาให้คะแนนครบทั้ง 3 ด้าน (1-5 ดาว)");
+        }
+
+        double avg = parts.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+        review.setRating(Math.round(avg * 100.0) / 100.0);
         return reviewRepository.save(review);
     }
 
@@ -34,7 +52,6 @@ public class ReviewService {
 
         Review review = reviewOpt.get();
 
-        // ตรวจสิทธิ์: ต้องเป็นเจ้าของรีวิว
         if (!String.valueOf(review.getUserId()).equals(currentUserId)) {
             return "UNAUTHORIZED";
         }
@@ -42,9 +59,8 @@ public class ReviewService {
         Integer targetId = review.getTargetId();
         reviewRepository.deleteById(reviewId);
 
-        // คำนวณคะแนนเฉลี่ยใหม่หลังลบ
         double avg = reviewRepository.findByTargetId(targetId).stream()
-                .mapToInt(Review::getRating)
+                .mapToDouble(Review::getRating)
                 .average()
                 .orElse(0.0);
         avg = Math.round(avg * 10.0) / 10.0;
