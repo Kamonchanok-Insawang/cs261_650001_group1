@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearFilterBtn = document.getElementById('clearFilterBtn');
   const applyFilterBtn = document.getElementById('applyFilterBtn');
 
-  if(openFilterBtn) {
+  if (openFilterBtn) {
     openFilterBtn.addEventListener('click', () => {
       filterModal.classList.add('active');
     });
   }
 
-  if(filterModal) {
+  if (filterModal) {
     filterModal.addEventListener('click', (e) => {
       if (e.target === filterModal) {
         filterModal.classList.remove('active');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if(clearFilterBtn) {
+  if (clearFilterBtn) {
     clearFilterBtn.addEventListener('click', () => {
       const radioInputs = filterModal.querySelectorAll('input[type="radio"]');
       radioInputs.forEach(input => input.checked = false);
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if(applyFilterBtn) {
+  if (applyFilterBtn) {
     applyFilterBtn.addEventListener('click', () => {
       filterModal.classList.remove('active');
     });
@@ -56,17 +56,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function goToCourse(code) {
+    window.location.href = `read.html?code=${encodeURIComponent(code)}`;
+  }
+
+  // ค้นหาด้วยรหัสวิชา -> เรียก GET /api/courses/{code}
   if (searchInput) {
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const keyword = searchInput.value.trim().toUpperCase();
-        
-        if (keyword === 'CS999' || keyword === '') {
-          showToast();
+    searchInput.addEventListener('keypress', async (e) => {
+      if (e.key !== 'Enter') return;
+
+      const keyword = searchInput.value.trim().toUpperCase();
+      if (keyword === '') {
+        showToast();
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/courses/${encodeURIComponent(keyword)}`);
+        if (response.ok) {
+          const course = await response.json();
+          goToCourse(course.code);
         } else {
-          alert(`กำลังค้นหาวิชา: ${keyword} ...`);
+          showToast(); // 404 = ไม่พบรายวิชา
         }
+      } catch (err) {
+        showToast();
       }
     });
   }
+
+  // คลิกการ์ดวิชา -> ไปหน้ารีวิวของวิชานั้น
+  document.querySelectorAll('.course-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const code = card.querySelector('.course-code').textContent.trim();
+      goToCourse(code);
+    });
+  });
 });

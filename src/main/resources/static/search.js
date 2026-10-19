@@ -4,27 +4,93 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearFilterBtn = document.getElementById('clearFilterBtn');
   const applyFilterBtn = document.getElementById('applyFilterBtn');
 
-  openFilterBtn.addEventListener('click', () => {
-    filterModal.classList.add('active');
-  });
+  if (openFilterBtn) {
+    openFilterBtn.addEventListener('click', () => {
+      filterModal.classList.add('active');
+    });
+  }
 
+  if (filterModal) {
+    filterModal.addEventListener('click', (e) => {
+      if (e.target === filterModal) {
+        filterModal.classList.remove('active');
+      }
+    });
+  }
 
-  filterModal.addEventListener('click', (e) => {
-    if (e.target === filterModal) {
+  if (clearFilterBtn) {
+    clearFilterBtn.addEventListener('click', () => {
+      const radioInputs = filterModal.querySelectorAll('input[type="radio"]');
+      radioInputs.forEach(input => input.checked = false);
+
+      const selects = filterModal.querySelectorAll('select');
+      selects.forEach(select => select.selectedIndex = 0);
+    });
+  }
+
+  if (applyFilterBtn) {
+    applyFilterBtn.addEventListener('click', () => {
       filterModal.classList.remove('active');
+    });
+  }
+
+  const searchInput = document.getElementById('searchInput');
+  const toastNotification = document.getElementById('toastNotification');
+  let toastTimer;
+
+  function showToast() {
+    if (toastNotification) {
+      toastNotification.classList.remove('hidden');
+      setTimeout(() => {
+        toastNotification.classList.add('show');
+      }, 10);
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toastNotification.classList.remove('show');
+        setTimeout(() => {
+          toastNotification.classList.add('hidden');
+        }, 400);
+      }, 3000);
     }
-  });
+  }
 
-  clearFilterBtn.addEventListener('click', () => {
-    const radioInputs = filterModal.querySelectorAll('input[type="radio"]');
-    radioInputs.forEach(input => input.checked = false);
+  function goToCourse(code) {
+    window.location.href = `read.html?code=${encodeURIComponent(code)}`;
+  }
 
-    const selects = filterModal.querySelectorAll('select');
-    selects.forEach(select => select.selectedIndex = 0);
-  });
+  // ค้นหาด้วยรหัสวิชา -> เรียก GET /api/courses/{code}
+  if (searchInput) {
+    searchInput.addEventListener('keypress', async (e) => {
+      if (e.key !== 'Enter') return;
 
+      const keyword = searchInput.value.trim().toUpperCase();
+      if (keyword === '') {
+        showToast();
+        return;
+      }
 
-  applyFilterBtn.addEventListener('click', () => {
-    filterModal.classList.remove('active');
+      try {
+        const response = await fetch(`/api/courses/${encodeURIComponent(keyword)}`);
+        if (response.ok) {
+          const course = await response.json();
+          goToCourse(course.code);
+        } else {
+          showToast(); // 404 = ไม่พบรายวิชา
+        }
+      } catch (err) {
+        showToast();
+      }
+    });
+  }
+
+  // คลิกการ์ดวิชา -> ไปหน้ารีวิวของวิชานั้น
+  document.querySelectorAll('.course-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const code = card.querySelector('.course-code').textContent.trim();
+      goToCourse(code);
+    });
   });
 });
