@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TU REVIEW - Write Review</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="write.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="main-header">
+      <div class="brand">
+        <h1 class="brand-title">TU REVIEW</h1>
+        <p class="brand-sub">course reviews for better learning</p>
+      </div>
+      <div class="user-badge">
+        <div class="user-avatar"></div>
+        <span class="user-name">User Account</span>
+      </div>
+    </header>
+
+    <main class="write-card">
+      <form id="writeReviewForm">
+        
+        <div class="top-section">
+          <div class="profile-info">
+            <div class="profile-avatar"></div>
+            <span class="profile-title">User Account</span>
+          </div>
+          
+          <div class="display-name-group">
+            <label class="section-label">Display Name</label>
+            <div class="radio-container">
+              <label class="radio-item">
+                <input type="radio" name="displayName" value="realname" checked>
+                <span class="custom-radio"></span>
+                <span>Show my name</span>
+              </label>
+              <label class="radio-item">
+                <input type="radio" name="displayName" value="anonymous">
+                <span class="custom-radio"></span>
+                <span>Anonymous</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="dropdown-section">
+          <div class="form-group">
+            <label class="section-label">Faculty</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a faculty</option>
+                <option value="sci">วิทยาศาสตร์และเทคโนโลยี</option>
+                <option value="eng">วิศวกรรมศาสตร์</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="section-label">Major</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a major</option>
+                <option value="cs">วิทยาการคอมพิวเตอร์</option>
+                <option value="math">คณิตศาสตร์</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="section-label">Course</label>
+            <div class="select-wrapper">
+              <select required>
+                <option value="" disabled selected>Select a course</option>
+                <option value="cs261">CS261</option>
+                <option value="cs233">CS233</option>
+              </select>
+              <i class="fa-solid fa-chevron-down select-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-and-rating-wrapper">
+          
+          <div class="form-group rating-section">
+            <label class="section-label">Ratings</label>
+            <div class="rating-container">
+              
+              <div class="rating-row">
+                <span class="rating-text">ความยาก<br><small>(Difficulty)</small></span>
+                <div class="star-group" data-category="difficulty">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-text">ภาระงาน<br><small>(Workload)</small></span>
+                <div class="star-group" data-category="workload">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-text">ความใจดีของอาจารย์<br><small>(Instructor)</small></span>
+                <div class="star-group" data-category="instructor">
+                  <svg class="star-icon" data-val="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <svg class="star-icon" data-val="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group review-group">
+            <label class="section-label">Your Review</label>
+            <textarea class="review-textarea" placeholder="Show your experience..." required></textarea>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-post">Post Review</button>
+        </div>
+
+      </form>
+    </main>
+  </div>
+
+  <script src="write.js"></script>
+</body>
+</html>
