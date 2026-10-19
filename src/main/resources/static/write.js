@@ -54,6 +54,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('writeReviewForm');
   if (!form) return;
 
+    // ---------- เติมรายวิชาจาก DB และเลือกวิชาตาม ?code= ----------
+  const courseSelect = form.querySelectorAll('select')[2];
+  const presetCode = (new URLSearchParams(window.location.search).get('code') || '')
+    .trim().toUpperCase();
+
+  async function loadCourses() {
+    try {
+      const res = await fetch('/api/courses?keyword=');
+      if (!res.ok) return;
+      const courses = await res.json();
+
+      courseSelect.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      placeholder.textContent = 'Select a course';
+      courseSelect.appendChild(placeholder);
+
+      courses.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.code;
+        opt.textContent = c.code + ' - ' + c.name;
+        courseSelect.appendChild(opt);
+      });
+
+      if (presetCode) courseSelect.value = presetCode;
+    } catch (e) {
+      // โหลดไม่ได้: ใช้ตัวเลือกเดิมใน HTML
+    }
+  }
+  loadCourses();
+
   function getProfile() {
     try {
       return JSON.parse(localStorage.getItem('userProfile'));
